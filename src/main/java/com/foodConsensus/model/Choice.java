@@ -37,6 +37,11 @@ public class Choice {
 	public Choice() {
 		super();
 	}
+	public Choice(String proposal, Status approval_status) {
+		super();
+		this.proposal = proposal;
+		this.approval_status = approval_status;
+	}
 
 	public Choice(int id, String proposal, User owner, Status approval_status) {
 		super();
@@ -76,6 +81,12 @@ public class Choice {
 
 	public void setApproval_status(Status approval_status) {
 		this.approval_status = approval_status;
+	}
+
+	@Override
+	public String toString() {
+		return "Choice [id=" + id + ", proposal=" + proposal + ", owner=" + owner + ", approval_status="
+				+ approval_status + "]";
 	}
 	
 	
