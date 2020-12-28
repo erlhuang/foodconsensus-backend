@@ -25,28 +25,18 @@ public class Motion {
 	
 	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "id")
-	private User owner; 
+	private User owner_id; 
 	
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	private List<User> invitedUsers;
-
 	public Motion() {
 		super();
 	}
 	
-	public Motion(String title, User owner) {
+	public Motion(String title, User owner_id) {
 		super();
 		this.title = title;
-		this.owner = owner;
-		this.invitedUsers = null;
+		this.owner_id = owner_id;
 	} 
 	
-	public Motion(String title, User owner, List<User> invitedUsers) {
-		super();
-		this.title = title;
-		this.owner = owner;
-		this.invitedUsers = invitedUsers;
-	}
 
 	public int getId() {
 		return id;
@@ -64,27 +54,12 @@ public class Motion {
 		this.title = title;
 	}
 
-	public User getOwner() {
-		return owner;
+	public User getOwner_id() {
+		return owner_id;
 	}
 
-	public void setOwner(User owner) {
-		this.owner = owner;
+	public void setOwner_id(User owner_id) {
+		this.owner_id = owner_id;
 	}
 
-	public List<User> getInvitedUsers() {
-		return invitedUsers;
-	}
-	
-	public void setInvitedUsers(List<User> users) {
-		this.invitedUsers = users;
-	}
-	
-	public void addInvitedUsers(User user) {
-		if (this.invitedUsers == null) {
-			this.invitedUsers = new ArrayList<>();
-		}
-		
-		this.invitedUsers.add(user);
-	}
 }
