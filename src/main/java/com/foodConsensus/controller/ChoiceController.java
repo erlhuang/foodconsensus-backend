@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.foodConsensus.dto.ChoiceDTO;
 import com.foodConsensus.model.Choice;
 import com.foodConsensus.service.ChoiceService;
 
@@ -22,8 +21,10 @@ public class ChoiceController {
 	public List<Choice> getChoices() {
 		return choiceService.getChoices();
 	}
-	@PostMapping(value = "/choices")
-	public Choice addChoice(@RequestBody ChoiceDTO choice) {
+	
+	@PostMapping("/addChoices")
+	public Choice addChoice(@RequestBody Choice choice) {
 		return choiceService.addChoice(choice);
 	}
+
 }

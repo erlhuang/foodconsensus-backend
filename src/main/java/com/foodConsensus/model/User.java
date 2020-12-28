@@ -1,5 +1,6 @@
 package com.foodConsensus.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column
 	private String name;
 	private String password;
 	private boolean isAdmin;
@@ -24,6 +26,19 @@ public class User {
 		this.name = name;
 		this.password = password;
 		this.isAdmin = isAdmin;
+	}
+	public User(int id, String name, String password, boolean isAdmin) {
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.isAdmin = isAdmin;
+	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -50,13 +65,7 @@ public class User {
 		this.isAdmin = isAdmin;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 
 	@Override
 	public String toString() {

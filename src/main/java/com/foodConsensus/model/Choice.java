@@ -26,7 +26,7 @@ public class Choice {
 	private String proposal;
 	
 	//The user who suggested this choice
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="id")
 	private User owner;
 	
@@ -37,9 +37,10 @@ public class Choice {
 	public Choice() {
 		super();
 	}
-	public Choice(String proposal, Status approval_status) {
+	public Choice(String proposal, User owner, Status approval_status) {
 		super();
 		this.proposal = proposal;
+		this.owner = owner;
 		this.approval_status = approval_status;
 	}
 

@@ -36,6 +36,19 @@ Gets all users in the database. Test endpoint.
     }
 ]
 ```
+# GET /users/{id}
+Gets a user by id in the database.
+>http://localhost:8081/users/4
+```JSON
+[
+    {
+        "id": 8,
+        "name": "testuser",
+        "password": "pass",
+        "admin": false
+    }
+]
+```
 
 # POST /users
 To add a user to this POST request, a JSON object must be added in the body. 
@@ -56,38 +69,59 @@ Output:
 ```JSON
 [
     {
-        "id": 3,
-        "proposal": "Domino",
-        "owner": null,
-        "approval_status": "PENDING"
+        "id": 14,
+        "proposal": "Burger King2222",
+        "owner": {
+            "id": 1,
+            "name": "testuser",
+            "password": "pass",
+            "admin": false
+        },
+        "approval_status": "DECLINED"
     },
     {
-        "id": 4,
-        "proposal": "McDonald",
-        "owner": null,
+        "id": 15,
+        "proposal": "Burger King2222",
+        "owner": {
+            "id": 2,
+            "name": "testUser7",
+            "password": "user",
+            "admin": false
+        },
         "approval_status": "DECLINED"
     }
 ]
 ```
 
-# POST /choices
+# POST /addChoices
 Add a choice to this POST request, a JSON object must be added in the body.
 
 Input:
-> http://localhost:8081/choices
+> http://localhost:8081/addChoices
 
 ```JSON
 {
-    "proposal" : "McDonald",
-    "approval_status" : "DECLINED"
+    "proposal": "Burger King2222",
+    "owner": {
+        "id": 2,
+        "name": "testuser",
+        "password": "pass",
+        "admin": false
+        },
+    "approval_status": "DECLINED"
 }
 ```
 Output:
 ```JSON
 {
-    "id": 5,
-    "proposal": "Burger King",
-    "owner": null,
+    "id": 15,
+    "proposal": "Burger King2222",
+    "owner": {
+        "id": 2,
+        "name": "testuser",
+        "password": "pass",
+        "admin": false
+    },
     "approval_status": "DECLINED"
 }
 ```
