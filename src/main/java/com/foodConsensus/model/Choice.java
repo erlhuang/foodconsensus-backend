@@ -26,24 +26,24 @@ public class Choice {
 	private String proposal;
 	
 	//The user who suggested this choice
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="id")
-	private User owner;
-	
-	//approval status, whether this choice is approved by the owner or not
-	@Enumerated(EnumType.STRING)
-	private Status approval_status;
+	private User owner_id;
 	
 	public Choice() {
 		super();
 	}
+	public Choice(String proposal, User owner_id) {
+		super();
+		this.proposal = proposal;
+		this.owner_id = owner_id;
+	}
 
-	public Choice(int id, String proposal, User owner, Status approval_status) {
+	public Choice(int id, String proposal, User owner_id) {
 		super();
 		this.id = id;
 		this.proposal = proposal;
-		this.owner = owner;
-		this.approval_status = approval_status;
+		this.owner_id = owner_id;
 	}
 
 	public int getId() {
@@ -62,20 +62,17 @@ public class Choice {
 		this.proposal = proposal;
 	}
 
-	public User getOwner() {
-		return owner;
+	public User getOwner_id() {
+		return owner_id;
 	}
 
-	public void setOwner(User owner) {
-		this.owner = owner;
+	public void setOwner_id(User owner_id) {
+		this.owner_id = owner_id;
 	}
 
-	public Status getApproval_status() {
-		return approval_status;
-	}
-
-	public void setApproval_status(Status approval_status) {
-		this.approval_status = approval_status;
+	@Override
+	public String toString() {
+		return "Choice [id=" + id + ", proposal=" + proposal + ", owner_id=" + owner_id + "]";
 	}
 	
 	

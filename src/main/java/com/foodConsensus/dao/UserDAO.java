@@ -17,6 +17,8 @@ import com.foodConsensus.model.User;
 public interface UserDAO extends JpaRepository<User, Integer>{
 	//returns all users found
 	public List<User> findAll();
+
+	public List<User> findUserById(int ownerId);
 	
 	
 //	@Autowired
