@@ -38,7 +38,7 @@ Gets all users in the database. Test endpoint.
 ```
 # GET /users/{id}
 Gets a user by id in the database.
->http://localhost:8081/users/4
+>http://localhost:8081/users/8
 ```JSON
 [
     {
