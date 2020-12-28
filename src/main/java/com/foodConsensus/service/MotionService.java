@@ -1,6 +1,6 @@
 package com.foodConsensus.service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +25,8 @@ public class MotionService {
 	}
 	
 	public Motion addMotion(MotionDTO dto) {
-		List<User> invitedUsers = new ArrayList<User>(); 
-		for (int i = 0; i < dto.getInvitedUsers().size(); i++) {
-			invitedUsers.add(userDao.findByName(dto.getInvitedUsers().get(i)).get(0));
-		}
 		User owner = userDao.findByName("testuser").get(0);
-		Motion motion = new Motion(dto.getTitle(), owner, invitedUsers);
+		Motion motion = new Motion(dto.getTitle(), owner);
 		return (Motion) motionDao.save(motion);
 	}
 }

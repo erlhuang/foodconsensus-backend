@@ -8,23 +8,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.foodConsensus.dto.MotionDTO;
-import com.foodConsensus.model.Motion;
-import com.foodConsensus.service.MotionService;
+import com.foodConsensus.dto.MotionChoiceDTO;
+import com.foodConsensus.model.MotionChoice;
+import com.foodConsensus.service.MotionChoiceService;
 
 @RestController 
 public class MotionChoiceController {
 	@Autowired
-	private MotionService motionChoiceService;
+	private MotionChoiceService motionChoiceService;
 	
 	@GetMapping("/motionchoices")
-	public List<Motion> getMotionChoices() {
-		return motionChoiceService.getMotions();
+	public List<MotionChoice> getMotionChoices() {
+		return motionChoiceService.getMotionChoices();
 	}
 	
 	@PostMapping(value= "/motionchoices")
-	public Motion addMotionChoice(@RequestBody MotionDTO motion) {
-		return motionChoiceService.addMotion(motion);
+	public MotionChoice addMotionChoice(@RequestBody MotionChoiceDTO motionChoice) {
+		return motionChoiceService.addMotionChoice(motionChoice);
 	}
 	
 }

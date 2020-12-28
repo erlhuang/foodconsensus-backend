@@ -22,23 +22,4 @@ public interface UserDAO extends JpaRepository<User, Integer>{
 	
 	public List<User> findByName(String name);
 	
-//	@Autowired
-//	SessionFactory sessionFactory; 
-//	
-//	public User addUser(User u) {
-//		Session session = sessionFactory.getCurrentSession();
-//		int id = (int) session.save(u);
-//		
-//		User user = new User(u.getName(), u.getPassword(), false);
-//		user.setId(id);
-//		
-//		return user;
-//	}
-//	
-//	public List<User> getUsers() {
-//		Session session = sessionFactory.getCurrentSession();
-//		
-//		return session.createQuery("from User u").getResultList();
-//	}
-	
 }

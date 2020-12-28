@@ -43,6 +43,14 @@ public class MotionUser {
 		this.vote_id = vote_id;
 	}
 
+	public MotionUser(User user_id, Motion motion, Choice vote_id) {
+		this.id = id;
+		this.user_id = user_id;
+		this.motion = motion;
+		this.vote_id = vote_id;
+	}
+
+	
 	public int getId() {
 		return id;
 	}

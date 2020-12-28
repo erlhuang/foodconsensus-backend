@@ -29,9 +29,6 @@ public class MotionChoice {
 	@JoinColumn(name = "choice_id")
 	private Choice choice;
 	
-//	@Enumerated(EnumType.STRING)
-//	private Status approval_status;
-	
 	public MotionChoice() {
 		super();
 	}
@@ -42,6 +39,13 @@ public class MotionChoice {
 		this.motion = motion;
 		this.choice = choice;
 	}
+	
+	public MotionChoice(Motion motion, Choice choice) {
+		super();
+		this.motion = motion;
+		this.choice = choice;
+	}
+	
 
 	public int getId() {
 		return id;
