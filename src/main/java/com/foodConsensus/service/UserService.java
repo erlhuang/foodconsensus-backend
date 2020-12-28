@@ -28,4 +28,9 @@ public class UserService {
 		return userDao.findByName(username).get(0);
 	}
 	
+	public List<User> getUserById (int id) {
+		return userDao.findUserById(id);
+
+	}
+	
 }
