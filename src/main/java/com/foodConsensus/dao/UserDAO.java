@@ -18,6 +18,7 @@ public interface UserDAO extends JpaRepository<User, Integer>{
 	//returns all users found
 	public List<User> findAll();
 	
+	public List<User> findByName(String name);
 	
 //	@Autowired
 //	SessionFactory sessionFactory; 

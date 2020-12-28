@@ -31,19 +31,19 @@ public class Choice {
 	private User owner;
 	
 	//approval status, whether this choice is approved by the owner or not
-	@Enumerated(EnumType.STRING)
-	private Status approval_status;
+//	@Enumerated(EnumType.STRING)
+//	private Status approval_status;
 	
 	public Choice() {
 		super();
 	}
 
-	public Choice(int id, String proposal, User owner, Status approval_status) {
+	public Choice(int id, String proposal, User owner /*, Status approval_status*/) {
 		super();
 		this.id = id;
 		this.proposal = proposal;
 		this.owner = owner;
-		this.approval_status = approval_status;
+//		this.approval_status = approval_status;
 	}
 
 	public int getId() {
@@ -70,13 +70,13 @@ public class Choice {
 		this.owner = owner;
 	}
 
-	public Status getApproval_status() {
-		return approval_status;
-	}
-
-	public void setApproval_status(Status approval_status) {
-		this.approval_status = approval_status;
-	}
+//	public Status getApproval_status() {
+//		return approval_status;
+//	}
+//
+//	public void setApproval_status(Status approval_status) {
+//		this.approval_status = approval_status;
+//	}
 	
 	
 	
