@@ -28,7 +28,9 @@ public class Choice {
 	//The user who suggested this choice
 	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="id")
+
 	private User owner_id;
+
 	
 	public Choice() {
 		super();
@@ -74,6 +76,7 @@ public class Choice {
 	public String toString() {
 		return "Choice [id=" + id + ", proposal=" + proposal + ", owner_id=" + owner_id + "]";
 	}
+
 	
 	
 	

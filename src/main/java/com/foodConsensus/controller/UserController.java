@@ -29,6 +29,11 @@ public class UserController {
 		return userService.getUsers();
 	}
 	
+	@GetMapping("/users/{username}")
+	public User getUserByName(@PathVariable String username) {
+		return userService.findUser(username);
+	}
+	
 	//request body assumes json is sent in body of the request
 	@PostMapping(value = "/users")
 	//Local CORS testing

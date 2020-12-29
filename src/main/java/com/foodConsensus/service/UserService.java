@@ -27,8 +27,13 @@ public class UserService {
 		return (User) userDao.save(user);
 	}
 	
+	public User findUser(String username) {
+		return userDao.findByName(username).get(0);
+	}
+	
 	public List<User> getUserById (int id) {
 		return userDao.findUserById(id);
+
 	}
 	
 }
