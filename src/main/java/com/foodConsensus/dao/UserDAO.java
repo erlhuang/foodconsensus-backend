@@ -1,6 +1,7 @@
 package com.foodConsensus.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -19,7 +20,8 @@ public interface UserDAO extends JpaRepository<User, Integer>{
 	public List<User> findAll();
 
 	public List<User> findUserById(int ownerId);
-	
-	public List<User> findByName(String name);
+  
+	public Optional<User> findByName(String name);
+	public Boolean existsByName(String name);
 	
 }
