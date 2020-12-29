@@ -34,6 +34,10 @@ public class Suggestion {
 	@Enumerated(EnumType.STRING)
 	private Status approval_status;
 
+	public Suggestion() {
+		super();
+	}
+	
 	public Suggestion(Motion motion_id, Choice choice_id, User user_id, Status approval_status) {
 		super();
 		this.motion_id = motion_id;

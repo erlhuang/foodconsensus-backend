@@ -127,7 +127,8 @@ Output:
 ```
 
 # GET /motion 
-Gets and returns a motion from the database. Only displays motions you are invited to.
+Gets and returns a motion from the database. Only displays motions you are invited to. Currently hardcoded to a specific user as authentication is not implemented yet. 
+
 
 # POST /motion
 Adds a motion to the database. An example JSON object that should be added in the body is as follows:
@@ -137,9 +138,13 @@ Adds a motion to the database. An example JSON object that should be added in th
 }
 ```
 
-# GET /motionchoices 
+# GET /motionchoices
+
+WIP!!!
 Displays motion choices in accordance to the specific motion
-and whether the user is invited to the motion. 
+and whether the user is invited to the motion. Currently
+hardcoded to a specific user as authentication is not implemented
+yet. 
 
 # POST /motionchoices 
 Adds a motion choice to the database. A Motion choice is a specific option that will be displayed for a corresponding motion. The necessary information for the body are the corresponding IDs for the corresponding motion and choice entries in the database. An example JSON object is as follows: 

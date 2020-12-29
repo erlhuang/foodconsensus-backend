@@ -20,7 +20,8 @@ public class MotionController {
 	
 	@GetMapping("/motions")
 	public List<Motion> getMotions() {
-		return motionService.getMotions();
+//		return motionService.getMotions();
+		return motionService.getMotionsByUserId();
 	}
 	
 	@PostMapping(value= "/motions")

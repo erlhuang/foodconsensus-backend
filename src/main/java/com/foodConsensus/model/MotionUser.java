@@ -21,7 +21,7 @@ public class MotionUser {
 	
 	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "id")
-	private User user_id;
+	private User userid;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "motion_id")
@@ -29,7 +29,7 @@ public class MotionUser {
 	
 	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "choice_id")
-	private Choice vote_id;
+	private Choice voteid;
 	
 	public MotionUser() {
 		super();
@@ -38,16 +38,16 @@ public class MotionUser {
 	public MotionUser(int id, User user_id, Motion motion, Choice vote_id) {
 		super();
 		this.id = id;
-		this.user_id = user_id;
+		this.userid = user_id;
 		this.motion = motion;
-		this.vote_id = vote_id;
+		this.voteid = vote_id;
 	}
 
 	public MotionUser(User user_id, Motion motion, Choice vote_id) {
 		this.id = id;
-		this.user_id = user_id;
+		this.userid = user_id;
 		this.motion = motion;
-		this.vote_id = vote_id;
+		this.voteid = vote_id;
 	}
 
 	
@@ -59,12 +59,12 @@ public class MotionUser {
 		this.id = id;
 	}
 
-	public User getUser_id() {
-		return user_id;
+	public User getUserid() {
+		return userid;
 	}
 
-	public void setUser_id(User user_id) {
-		this.user_id = user_id;
+	public void setUserid(User user_id) {
+		this.userid = user_id;
 	}
 
 	public Motion getMotion() {
@@ -75,12 +75,12 @@ public class MotionUser {
 		this.motion = motion;
 	}
 
-	public Choice getVote_id() {
-		return vote_id;
+	public Choice getVoteid() {
+		return voteid;
 	}
 
-	public void setVote_id(Choice vote_id) {
-		this.vote_id = vote_id;
+	public void setVoteid(Choice vote_id) {
+		this.voteid = vote_id;
 	}
 	
 	

@@ -11,4 +11,5 @@ import com.foodConsensus.model.MotionChoice;
 public interface MotionChoiceDAO extends JpaRepository<MotionChoice, Integer> {
 	public List<MotionChoice> findAll();
 	
+	public List<MotionChoice> findByMotionId(int id);
 }
