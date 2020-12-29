@@ -5,9 +5,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class DemoApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
+	
+//Commenting out test
+//	@Test
+//	void contextLoads() {
+//		
+//	}
 
 }
