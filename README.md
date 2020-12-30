@@ -100,27 +100,25 @@ Get all choices in the database.
 Output:
 ```JSON
 [
-    {
-        "id": 14,
-        "proposal": "Burger King2222",
-        "owner": {
-            "id": 1,
-            "name": "testuser",
-            "password": "pass",
+ {
+        "id": 16,
+        "name": "Burger King",
+        "owner_id": {
+            "id": 17,
+            "name": "testuser22",
+            "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
             "admin": false
-        },
-        "approval_status": "DECLINED"
+        }
     },
     {
-        "id": 15,
-        "proposal": "Burger King2222",
-        "owner": {
-            "id": 2,
-            "name": "testUser7",
-            "password": "user",
+        "id": 17,
+        "name": "Pizza Hut",
+        "owner_id": {
+            "id": 17,
+            "name": "testuser22",
+            "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
             "admin": false
-        },
-        "approval_status": "DECLINED"
+        }
     }
 ]
 ```
@@ -153,12 +151,54 @@ Output:
 # GET /motions
 Gets and returns a motion from the database. Only displays motions the current user is invited to.
 
+Example output:
+```JSON
+[
+    {
+        "id": 4,
+        "title": "Test Motion 1",
+        "owner_id": {
+            "id": 17,
+            "name": "testuser22",
+            "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+            "admin": false
+        },
+        "status": true,
+        "winner": {
+            "id": 16,
+            "name": "Burger King",
+            "owner_id": {
+                "id": 17,
+                "name": "testuser22",
+                "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                "admin": false
+            }
+        }
+    }
+]
+``` 
 
 # POST /motions
 Adds a motion to the database. An example JSON object that should be added in the body is as follows:
 ```JSON
 {
     "title":"Test Motion 1"
+}
+```
+
+Example output:
+```JSON
+{
+    "id": 5,
+    "title": "Test Motion 2",
+    "owner_id": {
+        "id": 17,
+        "name": "testuser22",
+        "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+        "admin": false
+    },
+    "status": false,
+    "winner": null
 }
 ```
 
@@ -198,22 +238,198 @@ Displays all motion choices.
 Displays motion choices in accordance to the specified motion 
 and whether the logged in user is invited to the motion. 
 
+Example Output: 
+```JSON
+[
+    {
+        "id": 2,
+        "motion": {
+            "id": 4,
+            "title": "Test Motion 1",
+            "owner_id": {
+                "id": 17,
+                "name": "testuser22",
+                "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                "admin": false
+            },
+            "status": true,
+            "winner": {
+                "id": 16,
+                "name": "Burger King",
+                "owner_id": {
+                    "id": 17,
+                    "name": "testuser22",
+                    "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                    "admin": false
+                }
+            }
+        },
+        "choice": {
+            "id": 16,
+            "name": "Burger King",
+            "owner_id": {
+                "id": 17,
+                "name": "testuser22",
+                "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                "admin": false
+            }
+        }
+    },
+    {
+        "id": 3,
+        "motion": {
+            "id": 4,
+            "title": "Test Motion 1",
+            "owner_id": {
+                "id": 17,
+                "name": "testuser22",
+                "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                "admin": false
+            },
+            "status": true,
+            "winner": {
+                "id": 16,
+                "name": "Burger King",
+                "owner_id": {
+                    "id": 17,
+                    "name": "testuser22",
+                    "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                    "admin": false
+                }
+            }
+        },
+        "choice": {
+            "id": 17,
+            "name": "Pizza Hut",
+            "owner_id": {
+                "id": 17,
+                "name": "testuser22",
+                "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                "admin": false
+            }
+        }
+    }
+]
+``` 
+
 # POST /motionchoices 
 Adds a motion choice to the database. A Motion choice is a specific option that will be displayed for a corresponding motion. The necessary information for the body are the corresponding IDs for the corresponding motion and choice entries in the database. An example JSON object is as follows: 
 ```JSON 
 {
-    "motionId": 1,
-    "choiceId": 3
+    "motionId": 4,
+    "choiceId": 18
 }
 ```
+
+Output:
+```JSON
+{
+    "id": 4,
+    "motion": {
+        "id": 4,
+        "title": "Test Motion 1",
+        "owner_id": {
+            "id": 17,
+            "name": "testuser22",
+            "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+            "admin": false
+        },
+        "status": false,
+        "winner": null
+    },
+    "choice": {
+        "id": 18,
+        "name": "McDonald's",
+        "owner_id": {
+            "id": 17,
+            "name": "testuser22",
+            "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+            "admin": false
+        }
+    }
+}
+``` 
+
 
 # POST /motionuser
 Adds a motion user entry to the database. This is necessary as it maps a user to a motion, essentially inviting them to that motion while also keeping track of information like their vote. 
 An example JSON object is as follows:
 ```JSON
 {
-    "motionId": 1,
-    "userId": 1 
+    "motionId": 4,
+    "userId": 21
 }
 ``` 
 The fields voteId (the choice they select) will automatically be set to null. 
+
+Output:
+```JSON
+{
+    "id": 5,
+    "userid": {
+        "id": 21,
+        "name": "testingagain",
+        "password": "$2a$10$xCYy8.lbJRMDCNmxeF4Rtukk.hMmqfrqbzGG7KAAV8TYfpCVivuSC",
+        "admin": false
+    },
+    "motion": {
+        "id": 4,
+        "title": "Test Motion 1",
+        "owner_id": {
+            "id": 17,
+            "name": "testuser22",
+            "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+            "admin": false
+        },
+        "status": false,
+        "winner": null
+        }
+    },
+    "voteid": null
+}
+```
+
+# PUT /motionuser 
+Updates a motion user entry so that they can add a vote to a user's entry in the motion. An example JSON object is as follows:
+```JSON
+{
+    "motionId":"4",
+    "voteid":"17"
+}
+``` 
+17 indicates the ID of the choice they are voting for. 
+
+Output: 
+```JSON
+{
+    "id": 4,
+    "userid": {
+        "id": 20,
+        "name": "testuser44",
+        "password": "$2a$10$DBUBn7F.IEIiOkI8h925Qe.q626tY0KpbgdR3Hssh.pLzGas1Xfz2",
+        "admin": false
+    },
+    "motion": {
+        "id": 4,
+        "title": "Test Motion 1",
+        "owner_id": {
+            "id": 17,
+            "name": "testuser22",
+            "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+            "admin": false
+        },
+        "status": false,
+        "winner": null
+    },
+    "voteid": {
+        "id": 17,
+        "name": "Pizza Hut",
+        "owner_id": {
+            "id": 17,
+            "name": "testuser22",
+            "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+            "admin": false
+        }
+    }
+}
+```
