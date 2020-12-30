@@ -11,7 +11,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,4 +46,9 @@ public class MotionController {
 		return motionService.addMotion(motion, username);
 	}
 	
+	@PutMapping(value= "/motions/{motionId}")
+	public Motion updateMotion(@PathVariable int motionId, @AuthenticationPrincipal UserDetailsImpl user) {
+		String username = user.getName();
+		return motionService.updateMotion(motionId, username);
+	}
 }

@@ -162,6 +162,34 @@ Adds a motion to the database. An example JSON object that should be added in th
 }
 ```
 
+# PUT /motions/{motionId} 
+Tallies up a winner for the respective motion (determined by the motionId in the URL parameter) and updates the motion's status to true. Does not require a JSON body, but the user submitting the PUT request must be the owner of this motion. 
+
+Example output: 
+```JSON
+{
+    "id": 4,
+    "title": "Test Motion 1",
+    "owner_id": {
+        "id": 17,
+        "name": "testuser22",
+        "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+        "admin": false
+    },
+    "status": true,
+    "winner": {
+        "id": 16,
+        "name": "Burger King",
+        "owner_id": {
+            "id": 17,
+            "name": "testuser22",
+            "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+            "admin": false
+        }
+    }
+}
+``` 
+
 # GET /motionchoices
 
 Displays all motion choices.
@@ -184,7 +212,8 @@ Adds a motion user entry to the database. This is necessary as it maps a user to
 An example JSON object is as follows:
 ```JSON
 {
-    "motionId": 1
+    "motionId": 1,
+    "userId": 1 
 }
 ``` 
-The fields voteId (the choice they select) will automatically be set to null. The owner id is automatically mapped in the backend in accordance to the user session.
+The fields voteId (the choice they select) will automatically be set to null. 
