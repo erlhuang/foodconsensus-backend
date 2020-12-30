@@ -30,17 +30,16 @@ public class MotionService {
 		return motionDao.findAll();
 	}
 	
-	public Motion addMotion(MotionDTO dto) {
-		//CHANGE THIS WHEN AUTHENTCATION WORKS!
-		User owner = userDao.findUserById(3).get(0);
+	public Motion addMotion(MotionDTO dto, String username) {
+		User owner = userDao.findByName(username).get();
 		Motion motion = new Motion(dto.getTitle(), owner);
 		return (Motion) motionDao.save(motion);
 	}
 	
-	public List<Motion> getMotionsByUserId() {
-		//CHANGE THIS WHEN AUTHETNICATION WORKS!
+	public List<Motion> getMotionsByUserId(String username) {
 		//Only return motions that the current user is invited to
-		User user = userDao.findByName("testuser").get(0);
+		User user =  userDao.findByName(username).get();
+		
 		ArrayList<Motion> motions = new ArrayList<Motion>(); 
 		List<MotionUser> motionUsers = motionUserDao.findByUserid(user);
 		for (MotionUser temp: motionUsers) {

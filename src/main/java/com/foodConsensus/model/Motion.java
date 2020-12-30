@@ -21,11 +21,18 @@ public class Motion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "motion_id")
 	private int id;
+	
 	private String title;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST})
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "owner_id")
 	private User owner_id; 
+	
+	private boolean status; 
+	
+	@OneToOne(cascade = {CascadeType.PERSIST})
+	@JoinColumn(name = "winner")
+	private Choice winner; 
 	
 	public Motion() {
 		super();
@@ -35,6 +42,8 @@ public class Motion {
 		super();
 		this.title = title;
 		this.owner_id = owner_id;
+		this.status = false;
+		this.winner = null; 
 	} 
 	
 
@@ -60,6 +69,22 @@ public class Motion {
 
 	public void setOwner_id(User owner_id) {
 		this.owner_id = owner_id;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public Choice getWinner() {
+		return winner;
+	}
+
+	public void setWinner(Choice winner) {
+		this.winner = winner;
 	}
 
 }

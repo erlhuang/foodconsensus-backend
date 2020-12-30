@@ -49,10 +49,8 @@ public class MotionChoiceService {
 		return (MotionChoice) motionChoiceDao.save(motionChoice);
 	}
 	
-	public List<MotionChoice> getMotionChoicesById(int motionId) {
-		//hard coded find user for now.
-		//Change this when authentication works! 
-		User user = userDao.findUserById(1).get(0);
+	public List<MotionChoice> getMotionChoicesById(int motionId, String username) {
+		User user = userDao.findByName(username).get();
 		Motion motion = motionDao.findMotionById(motionId).get(0);
 		//here we check if the user is inside the list (essentially if hes invited to this motion)
 		List<MotionUser> listOfMotionUsers = motionUserDao.findByMotion(motion);

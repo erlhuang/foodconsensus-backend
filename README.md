@@ -125,7 +125,7 @@ Output:
 ]
 ```
 
-# POST /addChoices
+# POST /choices
 Add a choice to this POST request, a JSON object must be added in the body.
 
 Input:
@@ -133,36 +133,28 @@ Input:
 
 ```JSON
 {
-    "proposal": "Burger King2222",
-    "owner": {
-        "id": 2,
-        "name": "testuser",
-        "password": "pass",
-        "admin": false
-        },
-    "approval_status": "DECLINED"
+    "name": "Burger King2222",
 }
 ```
 Output:
 ```JSON
 {
-    "id": 15,
-    "proposal": "Burger King2222",
-    "owner": {
-        "id": 2,
-        "name": "testuser",
-        "password": "pass",
+    "id": 16,
+    "name": "Burger King",
+    "owner_id": {
+        "id": 17,
+        "name": "testuser22",
+        "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
         "admin": false
-    },
-    "approval_status": "DECLINED"
+    }
 }
 ```
 
-# GET /motion 
-Gets and returns a motion from the database. Only displays motions you are invited to. Currently hardcoded to a specific user as authentication is not implemented yet. 
+# GET /motions
+Gets and returns a motion from the database. Only displays motions the current user is invited to.
 
 
-# POST /motion
+# POST /motions
 Adds a motion to the database. An example JSON object that should be added in the body is as follows:
 ```JSON
 {
@@ -172,11 +164,11 @@ Adds a motion to the database. An example JSON object that should be added in th
 
 # GET /motionchoices
 
-WIP!!!
-Displays motion choices in accordance to the specific motion
-and whether the user is invited to the motion. Currently
-hardcoded to a specific user as authentication is not implemented
-yet. 
+Displays all motion choices.
+
+# GET /motionchoices/{motionId} 
+Displays motion choices in accordance to the specified motion 
+and whether the logged in user is invited to the motion. 
 
 # POST /motionchoices 
 Adds a motion choice to the database. A Motion choice is a specific option that will be displayed for a corresponding motion. The necessary information for the body are the corresponding IDs for the corresponding motion and choice entries in the database. An example JSON object is as follows: 
@@ -195,6 +187,4 @@ An example JSON object is as follows:
     "motionId": 1
 }
 ``` 
-The fields voteId (the choice they select) will automatically be set to null. The owner id is automatically mapped in the backend
-in accordance to the user session (Which is still a WIP)
-
+The fields voteId (the choice they select) will automatically be set to null. The owner id is automatically mapped in the backend in accordance to the user session.

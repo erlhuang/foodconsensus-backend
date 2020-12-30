@@ -26,11 +26,9 @@ public class MotionUserService {
 	@Autowired 
 	private MotionUserDAO motionUserDao;
 	
-	public MotionUser addMotionUser(MotionUserDTO dto) {
-		//CHANGE THIS WHEN AUTHENTICATION WORKS!
-		User user = userDao.findByName("testuser").get(0);
+	public MotionUser addMotionUser(MotionUserDTO dto, String username) {
+		User user = userDao.findByName(username).get();
 		Motion motion = motionDao.findMotionById(dto.getMotionId()).get(0);
-		
 		MotionUser motionUser = new MotionUser(user, motion, null);
 		return (MotionUser) motionUserDao.save(motionUser);
 	}
