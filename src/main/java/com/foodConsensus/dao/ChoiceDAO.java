@@ -9,4 +9,5 @@ public interface ChoiceDAO extends JpaRepository<Choice, Integer>{
 	public List<Choice> findAll();
 	
 	public List<Choice> findChoiceById(int choiceId);
+	public List<Choice> findChoiceByName(String name);
 }

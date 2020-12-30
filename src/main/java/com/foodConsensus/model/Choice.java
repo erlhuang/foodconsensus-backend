@@ -22,8 +22,9 @@ public class Choice {
 	@Column(name = "choice_id")
 	private int id;
 	
-	//The proposal in the choice
-	private String proposal;
+	//The name in the choice
+	@Column(nullable=false, unique=true)
+	private String name;
 	
 	//The user who suggested this choice
 	@OneToOne(cascade = {CascadeType.MERGE})
@@ -35,16 +36,16 @@ public class Choice {
 	public Choice() {
 		super();
 	}
-	public Choice(String proposal, User owner_id) {
+	public Choice(String name, User owner_id) {
 		super();
-		this.proposal = proposal;
+		this.name = name;
 		this.owner_id = owner_id;
 	}
 
-	public Choice(int id, String proposal, User owner_id) {
+	public Choice(int id, String name, User owner_id) {
 		super();
 		this.id = id;
-		this.proposal = proposal;
+		this.name = name;
 		this.owner_id = owner_id;
 	}
 
@@ -56,12 +57,12 @@ public class Choice {
 		this.id = id;
 	}
 
-	public String getProposal() {
-		return proposal;
+	public String getName() {
+		return name;
 	}
 
-	public void setProposal(String proposal) {
-		this.proposal = proposal;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public User getOwner_id() {
@@ -74,7 +75,7 @@ public class Choice {
 
 	@Override
 	public String toString() {
-		return "Choice [id=" + id + ", proposal=" + proposal + ", owner_id=" + owner_id + "]";
+		return "Choice [id=" + id + ", name=" + name + ", owner_id=" + owner_id + "]";
 	}
 
 	
