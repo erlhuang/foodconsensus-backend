@@ -12,10 +12,13 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        // stage('deploy'){
-        // 	steps{
-        // 		sh 'cp /home/ec2-user/.jenkins/workspace/FoodPipeline/target/AdeptusAdministratum.war /home/ec2-user/DockerStuff/FoodConsensus'
-        // 	}
-        // }
+        stage('dockerBuild'){
+        	steps{
+        		sh 'docker build -t foodimage .'
+        	}
+        }
+        //stage('dockerRun'){
+
+        //}
     }
 }
