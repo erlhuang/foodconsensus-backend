@@ -17,8 +17,10 @@ pipeline {
         		sh 'docker build -t foodimage .'
         	}
         }
-        //stage('dockerRun'){
-
-        //}
+        stage('dockerRun'){
+            steps{
+                sh 'docker run -t -i -p 5000:5000 foodimage'
+            }
+        }
     }
 }
