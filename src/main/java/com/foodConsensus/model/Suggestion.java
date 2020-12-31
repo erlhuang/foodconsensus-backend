@@ -1,6 +1,7 @@
 package com.foodConsensus.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,7 +17,8 @@ import javax.persistence.Table;
 public class Suggestion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int suggestion_id;
+	@Column(name="suggestion_id")
+	private int suggestionId;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "motion_id")
@@ -45,22 +47,24 @@ public class Suggestion {
 		this.user_id = user_id;
 		this.approval_status = approval_status;
 	}
-	public Suggestion(int suggestion_id, Motion motion_id, Choice choice_id, User user_id, Status approval_status) {
+	public Suggestion(int suggestionId, Motion motion_id, Choice choice_id, User user_id, Status approval_status) {
 		super();
-		this.suggestion_id = suggestion_id;
+		this.suggestionId = suggestionId;
 		this.motion_id = motion_id;
 		this.choice_id = choice_id;
 		this.user_id = user_id;
 		this.approval_status = approval_status;
 	}
 	
-	
-	public int getSuggestion_id() {
-		return suggestion_id;
+
+	public int getSuggestionId() {
+		return suggestionId;
 	}
-	public void setSuggestion_id(int suggestion_id) {
-		this.suggestion_id = suggestion_id;
+
+	public void setSuggestionId(int suggestionId) {
+		this.suggestionId = suggestionId;
 	}
+
 	public Motion getMotion_id() {
 		return motion_id;
 	}
@@ -87,7 +91,7 @@ public class Suggestion {
 	}
 	@Override
 	public String toString() {
-		return "Suggestion [suggestion_id=" + suggestion_id + ", motion_id=" + motion_id + ", choice_id=" + choice_id
+		return "Suggestion [suggestion_id=" + suggestionId + ", motion_id=" + motion_id + ", choice_id=" + choice_id
 				+ ", user_id=" + user_id + ", approval_status=" + approval_status + "]";
 	}
 	

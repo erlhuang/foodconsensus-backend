@@ -17,6 +17,7 @@ import com.foodConsensus.dto.UserDTO;
 import com.foodConsensus.model.User;
 import com.foodConsensus.service.UserService;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class UserController {
 

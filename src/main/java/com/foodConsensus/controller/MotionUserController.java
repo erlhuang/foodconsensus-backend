@@ -2,6 +2,7 @@ package com.foodConsensus.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import com.foodConsensus.model.MotionUser;
 import com.foodConsensus.security.services.UserDetailsImpl;
 import com.foodConsensus.service.MotionUserService;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController						
 public class MotionUserController {
 
