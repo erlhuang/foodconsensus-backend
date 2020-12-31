@@ -19,7 +19,7 @@ pipeline {
         }
         stage('dockerRun'){
             steps{
-                sh 'docker run -t -i -p 5000:5000 foodimage'
+                sh 'docker run -i -p 5000:5000 foodimage'
             }
         }
     }
