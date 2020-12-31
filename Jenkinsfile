@@ -19,7 +19,7 @@ pipeline {
         }
         stage('dockerRun'){
             steps{
-                sh 'docker run -i -p 8081:8081 foodimage'
+                sh 'sudo docker run -i -p 8081:8081 foodimage'
             }
         }
     }
