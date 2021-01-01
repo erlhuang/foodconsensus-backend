@@ -2,24 +2,29 @@ pipeline {
     agent any
 
     stages {
-        // stage('clean') {
-        //     steps {
-        //         sh 'mvn clean'
-        //     }
-        // }
-        // stage('package') {
-        //     steps {
-        //         sh 'mvn package'
-        //     }
-        // }
-        // stage('dockerBuild'){
-        // 	steps{
-        // 		sh 'docker build -t foodimage .'
-        // 	}
-        // }
+        stage('clean') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
+        stage('package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('dockerBuild'){
+        	steps{
+        		sh 'docker build -t foodimage .'
+        	}
+        }
+        stage('terribleIdea'){
+            steps{
+                sh 'screen'
+            }
+        }
         stage('dockerRun'){
             steps{
-                sh 'docker run foodimage'
+                sh 'docker run -i -p 8081:8081 foodimage'
             }
         }
     }
