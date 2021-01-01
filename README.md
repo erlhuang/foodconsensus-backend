@@ -434,6 +434,98 @@ Output:
 }
 ```
 
+# GET /suggestions 
+Gets all suggestions from the database. Example output:
+```JSON
+[
+    {
+        "suggestionId": 1,
+        "motion_id": {
+            "id": 4,
+            "title": "Test Motion 1",
+            "owner_id": {
+                "id": 17,
+                "name": "testuser22",
+                "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                "admin": false
+            },
+            "status": true,
+            "winner": {
+                "id": 16,
+                "name": "Burger King",
+                "owner_id": {
+                    "id": 17,
+                    "name": "testuser22",
+                    "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                    "admin": false
+                }
+            }
+        },
+        "choice_id": {
+            "id": 19,
+            "name": "Chipotle",
+            "owner_id": {
+                "id": 17,
+                "name": "testuser22",
+                "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                "admin": false
+            }
+        },
+        "user_id": {
+            "id": 20,
+            "name": "testuser44",
+            "password": "$2a$10$DBUBn7F.IEIiOkI8h925Qe.q626tY0KpbgdR3Hssh.pLzGas1Xfz2",
+            "admin": false
+        },
+        "approval_status": "APPROVED"
+    },
+    {
+        "suggestionId": 2,
+        "motion_id": {
+            "id": 4,
+            "title": "Test Motion 1",
+            "owner_id": {
+                "id": 17,
+                "name": "testuser22",
+                "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                "admin": false
+            },
+            "status": true,
+            "winner": {
+                "id": 16,
+                "name": "Burger King",
+                "owner_id": {
+                    "id": 17,
+                    "name": "testuser22",
+                    "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                    "admin": false
+                }
+            }
+        },
+        "choice_id": {
+            "id": 19,
+            "name": "Chipotle",
+            "owner_id": {
+                "id": 17,
+                "name": "testuser22",
+                "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+                "admin": false
+            }
+        },
+        "user_id": {
+            "id": 20,
+            "name": "testuser44",
+            "password": "$2a$10$DBUBn7F.IEIiOkI8h925Qe.q626tY0KpbgdR3Hssh.pLzGas1Xfz2",
+            "admin": false
+        },
+        "approval_status": "PENDING"
+    }
+]
+```
+# GET /suggestions/{motionId}
+Only gets suggestions from a specified motion. 
+Follows the same output as the above example. 
+
 # POST /suggestions
 Adds a suggestion to the database for a motion owner to either
 approve or decline. The JSON body will look as follows:

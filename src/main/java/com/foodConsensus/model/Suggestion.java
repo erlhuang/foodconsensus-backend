@@ -22,7 +22,7 @@ public class Suggestion {
 	
 	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "motion_id")
-	private Motion motion_id;
+	private Motion motionid;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "choice_id")
@@ -40,17 +40,17 @@ public class Suggestion {
 		super();
 	}
 	
-	public Suggestion(Motion motion_id, Choice choice_id, User user_id, Status approval_status) {
+	public Suggestion(Motion motionid, Choice choice_id, User user_id, Status approval_status) {
 		super();
-		this.motion_id = motion_id;
+		this.motionid = motionid;
 		this.choice_id = choice_id;
 		this.user_id = user_id;
 		this.approval_status = approval_status;
 	}
-	public Suggestion(int suggestionId, Motion motion_id, Choice choice_id, User user_id, Status approval_status) {
+	public Suggestion(int suggestionId, Motion motionid, Choice choice_id, User user_id, Status approval_status) {
 		super();
 		this.suggestionId = suggestionId;
-		this.motion_id = motion_id;
+		this.motionid = motionid;
 		this.choice_id = choice_id;
 		this.user_id = user_id;
 		this.approval_status = approval_status;
@@ -65,12 +65,15 @@ public class Suggestion {
 		this.suggestionId = suggestionId;
 	}
 
-	public Motion getMotion_id() {
-		return motion_id;
+
+	public Motion getMotionid() {
+		return motionid;
 	}
-	public void setMotion_id(Motion motion_id) {
-		this.motion_id = motion_id;
+
+	public void setMotionid(Motion motionid) {
+		this.motionid = motionid;
 	}
+
 	public Choice getChoice_id() {
 		return choice_id;
 	}
@@ -91,7 +94,7 @@ public class Suggestion {
 	}
 	@Override
 	public String toString() {
-		return "Suggestion [suggestion_id=" + suggestionId + ", motion_id=" + motion_id + ", choice_id=" + choice_id
+		return "Suggestion [suggestion_id=" + suggestionId + ", motionid=" + motionid + ", choice_id=" + choice_id
 				+ ", user_id=" + user_id + ", approval_status=" + approval_status + "]";
 	}
 	
