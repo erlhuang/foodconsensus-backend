@@ -41,10 +41,16 @@ public class MotionController {
 		return motionService.getMotionsByUserId(username);
 	}
 	
+	
 	@PostMapping(value= "/motions")
 	public Motion addMotion(@RequestBody MotionDTO motion, @AuthenticationPrincipal UserDetailsImpl user) {
 		String username = user.getName();
 		return motionService.addMotion(motion, username);
+	}
+	
+	@GetMapping(value = "/motions/{motionId}")
+	public Motion getMotionById(@PathVariable int motionId) {
+		return motionService.getMotionById(motionId);
 	}
 	
 	@PutMapping(value= "/motions/{motionId}")

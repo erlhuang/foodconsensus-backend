@@ -188,6 +188,37 @@ Example output:
 ]
 ``` 
 
+# GET /motions/{motionId}
+Gets and returns a motion based off a given motion ID. 
+
+URL input:
+> http://localhost:5000/motions/4
+
+Example output:
+```JSON
+{
+    "id": 4,
+    "title": "Test Motion 1",
+    "owner_id": {
+        "id": 17,
+        "name": "testuser22",
+        "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
+        "admin": false
+    },
+    "status": true,
+    "winner": {
+        "id": 16,
+        "name": "Burger King",
+        "owner_id": {
+            "id": 12,
+            "name": "karltest3",
+            "password": "$2a$10$pn4l4nr5sxPYnGF3ybU6ouaiJdiNHmY46ThzZvN68UPFIlpD5s1Ra",
+            "admin": false
+        },
+        "imageurl": null
+    }
+}
+```
 # POST /motions
 Adds a motion to the database. An example JSON object that should be added in the body is as follows:
 ```JSON

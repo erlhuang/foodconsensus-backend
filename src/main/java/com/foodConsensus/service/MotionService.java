@@ -48,6 +48,10 @@ public class MotionService {
 		return motionDao.findAll();
 	}
 	
+	public Motion getMotionById(int motionId) {
+		return motionDao.findMotionById(motionId).get(0);
+	}
+	
 	public Motion addMotion(MotionDTO dto, String username) {
 		User owner = userDao.findByName(username).get();
 		Motion motion = new Motion(dto.getTitle(), owner);
