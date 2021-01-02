@@ -29,17 +29,27 @@ public class Choice {
 	//The user who suggested this choice
 	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="id")
-
 	private User owner_id;
+	
+	//optional image url
+	private String imageurl;
 
 	
 	public Choice() {
 		super();
 	}
+	
 	public Choice(String name, User owner_id) {
 		super();
 		this.name = name;
 		this.owner_id = owner_id;
+	}
+
+	public Choice(String name, User owner_id, String imageurl) {
+		super();
+		this.name = name;
+		this.owner_id = owner_id;
+		this.imageurl = imageurl; 
 	}
 
 	public Choice(int id, String name, User owner_id) {
@@ -73,12 +83,17 @@ public class Choice {
 		this.owner_id = owner_id;
 	}
 
-	@Override
-	public String toString() {
-		return "Choice [id=" + id + ", name=" + name + ", owner_id=" + owner_id + "]";
+	public String getImageurl() {
+		return imageurl;
 	}
 
-	
-	
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
+
+	@Override
+	public String toString() {
+		return "Choice [id=" + id + ", name=" + name + ", owner_id=" + owner_id + ", imageurl=" + imageurl + "]";
+	}
 	
 }

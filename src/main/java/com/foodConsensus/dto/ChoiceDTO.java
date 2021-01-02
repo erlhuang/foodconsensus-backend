@@ -4,6 +4,7 @@ import com.foodConsensus.model.Status;
 
 public class ChoiceDTO {
 	private String name;
+	private String imageurl; 
 	
 	public ChoiceDTO () {
 		super(); 
@@ -12,6 +13,12 @@ public class ChoiceDTO {
 	public ChoiceDTO (String name) {
 		super();
 		this.name = name;
+	}
+	
+	public ChoiceDTO (String name, String imageurl) {
+		super();
+		this.name = name;
+		this.imageurl = imageurl;
 	}
 
 	public String getName() {
@@ -22,6 +29,14 @@ public class ChoiceDTO {
 		this.name = name;
 	}
 	
+
+	public String getImageurl() {
+		return imageurl;
+	}
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
 
 	@Override
 	public String toString() {
