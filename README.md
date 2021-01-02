@@ -610,3 +610,9 @@ Output (if approved, nothing is outputted if declined):
     }
 }
 ```
+# DELETE /suggestions/{suggestionsId}
+Deletes a suggestion by the given suggestion id. 
+Output:
+```
+Suggestion id 2 succesfully deleted.
+```
