@@ -2,6 +2,8 @@ package com.foodConsensus.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,8 @@ public class SuggestionService {
 	@Autowired
 	private MotionDAO motionDao;
 	
+	Logger logger = LoggerFactory.getLogger(SuggestionService.class);
+	
 	public List<Suggestion> getSuggestions() {
 		return suggestionDao.findAll();
 	}
@@ -67,5 +71,16 @@ public class SuggestionService {
 			suggestionDao.save(suggestion);
 			return null;
 		}
+	}
+	
+	public String deleteSuggestion(int suggestionId) {
+		Suggestion suggestion = suggestionDao.findSuggestionBySuggestionId(suggestionId).get(0);
+		if(suggestion == null) {
+			logger.info("Suggestion: " + suggestionId + " in DELETE was not found");
+			return "Suggestion was not found";
+		}
+		suggestionDao.delete(suggestion);
+		return("Suggestion id " + suggestionId + " succesfully deleted.");
+		
 	}
 }
