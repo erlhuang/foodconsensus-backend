@@ -134,17 +134,27 @@ Input:
     "name": "Burger King2222",
 }
 ```
+
+You may also had an optional imageurl field in the JSON body:
+```JSON
+{
+    "name": "In-n-Out",
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/InNOut.svg/1200px-InNOut.svg.png"
+}
+```
+
 Output:
 ```JSON
 {
-    "id": 16,
-    "name": "Burger King",
+    "id": 42,
+    "name": "In-n-Out",
     "owner_id": {
         "id": 17,
         "name": "testuser22",
         "password": "$2a$10$Kbq6IqA.88ZjPJktQD6TWuQyOFqiwvnSWgyp90f0YcDROHNPbSKC6",
         "admin": false
-    }
+    },
+    "imageurl": null
 }
 ```
 
