@@ -91,9 +91,11 @@ public class MotionService {
 		int currentVote;
 		for (MotionUser temp: motionUsers) {
 			//add 1 to the respective motion vote 
-			currentVote = motionVotes.get(temp.getVoteid().getName());
-			currentVote++; 
-			motionVotes.put(temp.getVoteid().getName(), currentVote);
+			if (temp.getVoteid() != null) {
+				currentVote = motionVotes.get(temp.getVoteid().getName());
+				currentVote++; 
+				motionVotes.put(temp.getVoteid().getName(), currentVote);
+			}
 		}
 		logger.info("Tallied votes: " + motionVotes);
 		int max = Collections.max(motionVotes.values());
