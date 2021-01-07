@@ -3,19 +3,63 @@
 Back-end for Revature Project 2: Food Consensus.
 Team Members: Tyler Kim, Eric Huang, Macy McAnally, Karl Matthes, Tianyuan Deng
 
+# Project Description
+This is the back-end API for our application Food Consensus. It's a simple app where a user can select 4 restaurants as possible choices,
+and then invite some friends to begin a voting process (which we've called a motion). Because of memory constraints, this backend is currently not deployed on an EC2 (although it was before).
+
+# Technologies Used
+* Spring Boot 
+* Hibernate 
+* Spring Security (JWT Tokens) 
+* Amazon RDS
+
+# Features
+* Login/authentication functionality
+* Ability to view your current motions you are invited to, and past motions
+* Ability for a motion owner to invite other users to their motion
+* Distinct functionality between a motion owner and the users who are invited to a motion
+    * Motion users can add suggestions to the list of choices, along with putting in their vote.
+    * Motion owners can approve or deny the suggestions, can put in their vote, and can also end the motion to begin tallying votes to determine a winner. 
+
+To-do list:
+* Search function to filter users and restaurant choices
+* Pagination for viewing users and restaurant choices
+* Need a way to handle tiebreakers
+* Need to figure out a better way to handle polling 
+
 # Instructions 
+Go to the main branch, click the green "Code" button and copy the HTTPS link. Use git clone followed by the copied HTTPS link to clone the repo.
 
-I haven't figured out how to use environment variables in an application.properties,
-so I've currently added it to the .gitignore and we'll have to add it manually. 
-As a workaround for now, please check #back-end in the Discord for instructions & 
-the application.properties file.
+The project can be run by using 
+```
+mvn spring-boot:run
+``` 
+(assuming you have maven installed). 
 
-See Karl's application.properties in the #back-end channel for the JWT secret key.
+The project can also be run by opening it in Spring Tools Suite and using the "Run as Spring Boot App" command. 
 
-# Current Endpoints 
+This project needs an application.properties file which should be added to src/main/resources.
+The application.properties needs:
+```
+server.port
+spring.datasource.url
+spring.datasource.username
+spring.datasource.password
 
-Base URL: localhost:8081
-Karl's Base URL: localhost:5000
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL92Dialect
+
+spring.jpa.hibernate.ddl-auto=update
+
+app.jwtSecret
+app.jwtExpirationMs 
+```
+A local database can be used for testing purposes; so you will have to set the necessary values for url, username, and password. the jwtSecret can be some random String, and a fair default for jwtExpirationMs is 86400000.
+
+# Usage 
+
+## Current Endpoints 
+
+Base URL: localhost:8081 (or whichever port you decide to use)
 
 ### NOTE: All endpoints in this branch are locked quite firmly behind authentication. Only the POST ```/api/auth/signup``` and POST ```/api/auth/signin``` routes should be available without authenticating first.
 
@@ -24,7 +68,7 @@ Karl's Base URL: localhost:5000
 "Authorization" : "Bearer <insert the JWT token here>"
 ```
 
-# POST /api/auth/signup
+## POST /api/auth/signup
 Creates a new user account. Works very similarly to the old POST route, but the password will be encoded before it is stored on the database. On success, a message will be returned.
 
 Follow this example format: 
@@ -35,7 +79,7 @@ Follow this example format:
 }
 ```
 
-# POST /api/auth/signin
+## POST /api/auth/signin
 Logs in a user account. Simply send the matching username and password you signed up with, and in the same format. The password will be encoded, checked against the encoded password in the database, and if they match, a JWT token will be returned, which will allow access to all other endpoints.
 
 Follow this example format: 
@@ -46,10 +90,10 @@ Follow this example format:
 }
 ```
 
-# GET /hello
+## GET /hello
 Simple Hello World test endpoint
 
-# GET /users
+## GET /users
 Gets all users in the database. Test endpoint.
 >http://localhost:8081/users
 ```JSON
@@ -68,7 +112,7 @@ Gets all users in the database. Test endpoint.
     }
 ]
 ```
-# GET /users/{id}
+## GET /users/{id}
 Gets a user by id in the database.
 >http://localhost:8081/users/8
 ```JSON
@@ -82,7 +126,7 @@ Gets a user by id in the database.
 ]
 ```
 
-# POST /users
+## POST /users
 To add a user to this POST request, a JSON object must be added in the body. 
 >http://localhost:8081/users
 
@@ -93,7 +137,7 @@ Follow this example format:
     "password":"pass"
 }
 ```
-# GET /choices
+## GET /choices
 Get all choices in the database.
 > http://localhost:8081/choices
 
@@ -123,7 +167,7 @@ Output:
 ]
 ```
 
-# POST /choices
+## POST /choices
 Add a choice to this POST request, a JSON object must be added in the body.
 
 Input:
@@ -158,7 +202,7 @@ Output:
 }
 ```
 
-# GET /motions
+## GET /motions
 Gets and returns a motion from the database. Only displays motions the current user is invited to.
 
 Example output:
@@ -188,7 +232,7 @@ Example output:
 ]
 ``` 
 
-# GET /motions/{motionId}
+## GET /motions/{motionId}
 Gets and returns a motion based off a given motion ID. 
 
 URL input:
@@ -219,7 +263,7 @@ Example output:
     }
 }
 ```
-# POST /motions
+## POST /motions
 Adds a motion to the database. An example JSON object that should be added in the body is as follows:
 ```JSON
 {
@@ -243,7 +287,7 @@ Example output:
 }
 ```
 
-# PUT /motions/{motionId} 
+## PUT /motions/{motionId} 
 Tallies up a winner for the respective motion (determined by the motionId in the URL parameter) and updates the motion's status to true. Does not require a JSON body, but the user submitting the PUT request must be the owner of this motion. 
 
 Example output: 
@@ -271,11 +315,11 @@ Example output:
 }
 ``` 
 
-# GET /motionchoices
+## GET /motionchoices
 
 Displays all motion choices.
 
-# GET /motionchoices/{motionId} 
+## GET /motionchoices/{motionId} 
 Displays motion choices in accordance to the specified motion 
 and whether the logged in user is invited to the motion. 
 
@@ -353,7 +397,7 @@ Example Output:
 ]
 ``` 
 
-# POST /motionchoices 
+## POST /motionchoices 
 Adds a motion choice to the database. A Motion choice is a specific option that will be displayed for a corresponding motion. The necessary information for the body are the corresponding IDs for the corresponding motion and choice entries in the database. An example JSON object is as follows: 
 ```JSON 
 {
@@ -392,7 +436,7 @@ Output:
 ``` 
 
 
-# POST /motionuser
+## POST /motionuser
 Adds a motion user entry to the database. This is necessary as it maps a user to a motion, essentially inviting them to that motion while also keeping track of information like their vote. 
 An example JSON object is as follows:
 ```JSON
@@ -430,7 +474,7 @@ Output:
 }
 ```
 
-# PUT /motionuser 
+## PUT /motionuser 
 Updates a motion user entry so that they can add a vote to a user's entry in the motion. An example JSON object is as follows:
 ```JSON
 {
@@ -475,7 +519,7 @@ Output:
 }
 ```
 
-# GET /suggestions 
+## GET /suggestions 
 Gets all suggestions from the database. Example output:
 ```JSON
 [
@@ -563,11 +607,11 @@ Gets all suggestions from the database. Example output:
     }
 ]
 ```
-# GET /suggestions/{motionId}
+## GET /suggestions/{motionId}
 Only gets suggestions from a specified motion. 
 Follows the same output as the above example. 
 
-# POST /suggestions
+## POST /suggestions
 Adds a suggestion to the database for a motion owner to either
 approve or decline. The JSON body will look as follows:
 ```JSON
@@ -612,7 +656,7 @@ with the motionId being the id for the motion the user is suggesting for, choice
 }
 ```
 
-# POST /suggestions/{suggestionsId}
+## POST /suggestions/{suggestionsId}
 Allows a motion owner to approve or decline a suggestion. If the suggestion is approved, a motion choice is created and returned as output. If it's declined, null is returned. The suggestion's approval_status is updated as needed. SuggestionId in the path param  is the id of the suggestion being approved/declined. 
 
 Example of JSON body:
@@ -651,9 +695,30 @@ Output (if approved, nothing is outputted if declined):
     }
 }
 ```
-# DELETE /suggestions/{suggestionsId}
+## DELETE /suggestions/{suggestionsId}
 Deletes a suggestion by the given suggestion id. 
 Output:
 ```
 Suggestion id 2 succesfully deleted.
 ```
+
+# Contributors: 
+* Eric Huang - Built the bulk of this API 
+    * The Controllers layer (minus the authentication controllers)
+    * The Service layer (includes logic for inviting users, users putting in their votes, and the final voting process)
+    * Models in Hibernate (which automatically maps our objects to fields/tables in our database)
+    * DAO layer (little code necessary thanks to JpaRepository)
+
+* Karl 
+    * Incorporated Spring Security for authentication with JWT tokens
+    * Built the Jenkins pipeline for Continuous Integration for deployment on our EC2
+    * Built the initial database mockup. 
+* Tianyuan Deng 
+    * Built the choices endpoint 
+    * Helped with some refactoring of our models
+* Tyler Kim 
+    * Helped test the endpoints and reported bugs
+    * Suggested high level changes and additions
+* Macy McAnally 
+    * Helped test the endpoints and reported bugs
+    * Suggested some necessary changes to our database models  
